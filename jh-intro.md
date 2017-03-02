@@ -1,5 +1,6 @@
 % Savio Jupyterhub training: JupyterHub on the Berkeley Savio high-performance computing cluster
 % March 8, 2017
+% Chris Paciorek and Maurice Manning
 
 
 # Introduction
@@ -12,7 +13,9 @@ The materials for this tutorial are available using git at [https://github.com/u
 
 These *jh-intro.html* and *jh-intro_slides.html* files were created from *jh-intro.md* by running `make all` (see *Makefile* for details on how that creates the html files).
 
-Please see this [zip file](https://github.com/ucberkeley/savio-training-jupyterhub-2017/archive/master.zip) for materials from our introductory training on August 2, including accessing Savio, data transfer, and basic job submission.
+You can find the material from previous trainings at:
+ - Introduction to Savio (August 2016): [zip file](https://github.com/ucberkeley/savio-training-intro-2017/archive/master.zip) 
+ - Parallelization on Savio (September 2017): [zip file](https://github.com/ucberkeley/savio-training-parallel-2017/archive/master.zip)
 
 
 # Outline
@@ -60,10 +63,16 @@ We need to login via a browser from <https://ln000.brc.berkeley.edu>, authentica
 
 We can choose from:
 
- - Local server (for testing and controlling multi-node parallel clusters)
- - Savio (1 node) (for parallel computation)
- - Savio2 (1 node) (for parallel computation)
- - Savio2_HTC (1 cpu) (for serial computation)
+ - Local server 
+    - testing
+    - controlling multi-node parallel clusters)
+ - Savio (1 node) 
+    - for parallel computation
+ - Savio2 (1 node) 
+    - for parallel computation
+ - Savio2_HTC (1 cpu)
+    - for serial computation
+ - Let us know if you need other configurations (e.g., GPU nodes, big memory nodes, etc.)
 
 Then we can immediately start working on our example notebook.
 
@@ -84,8 +93,9 @@ One can do parallel processing in a variety of ways in Python. Here we'll cover 
 
 Such clusters (except for basic testing) should be run under the `Savio - 1 node` or `Savio2 - 1 node` job profile.
 
- - Invoke `/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipcluster
-nbextension enable --user` from a terminal (either logging in via SSH or in a Jupyter terminal session).
+ - Invoke 
+```/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipcluster nbextension enable --user``` 
+    from a terminal (either logging in via SSH or in a Jupyter terminal session).
  - You should see that the `Clusters` tab is now `IPython Clusters` on the main Jupyter page. If not, then stop and restart your server through `Control Panel`.
 
 # IPython clusters: one node cluster -- running
@@ -136,7 +146,9 @@ cat custom_profile_code.py >> ipcluster_config.py
 
 # IPython clusters: customization -- using
 
-Now we should be able to start a cluster using this profile under the *IPython Clusters* tab; select the number of engines corresponding to the number of tasks you specified in ipcluster_config.py (48 in this case).
+Now we should be able to start a cluster using this profile under the *IPython Clusters* tab, as follows.
+
+Select the number of engines corresponding to the number of tasks you specified in ipcluster_config.py (48 in this case).
 
 Then start a Notebook and connect to the cluster.
 
@@ -144,7 +156,7 @@ For example, we use the same code as we did before, but needing to specify the n
 
 ```
 import IPython.parallel as ipp 
-rc = ipp.Client(profile='myNewProfile', cluster_id='paciorek')
+rc = ipp.Client(profile='myNewProfile', cluster_id='')
 rc.ids
 ```
 

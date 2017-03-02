@@ -1,10 +1,10 @@
-all: parallel.html parallel_slides.html
+all: jh-intro.html jh-intro_slides.html
 
-parallel.html: parallel.md
-	pandoc -s -o parallel.html parallel.md
+jh-intro.html: jh-intro.md
+	pandoc -s -o jh-intro.html jh-intro.md
 
-parallel_slides.html: parallel.md
-	pandoc -s --webtex -t slidy -o parallel_slides.html parallel.md
+jh-intro_slides.html: jh-intro.md
+	pandoc -s --webtex -t slidy -o jh-intro_slides.html jh-intro.md
 
 clean:
-	rm -rf parallel.html
+	rm -rf jh-intro.html
