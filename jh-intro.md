@@ -115,8 +115,7 @@ Here are the steps (also documented on the Savio JupyterHub page):
  - In a terminal (either from JupyterHub or not), enter:
 ```
 PROFILENAME=myNewProfile
-/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipython
-profile create --parallel --profile=${PROFILENAME}
+/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipython profile create --parallel --profile=${PROFILENAME}
 ```
  - Now go to the newly created directory for the profile:
 ```
@@ -135,6 +134,19 @@ EOF
 cat custom_profile_code.py >> ipcluster_config.py
 ```
 
+# IPython clusters: customization -- using
+
+Now we should be able to start a cluster using this profile under the *IPython Clusters* tab; select the number of engines corresponding to the number of tasks you specified in ipcluster_config.py (48 in this case).
+
+Then start a Notebook and connect to the cluster.
+
+For example, we use the same code as we did before, but needing to specify the name of the cluster, which is set to be *paciorek* in *custom_profile_code.py*.
+
+```
+import IPython.parallel as ipp 
+rc = ipp.Client(profile='myNewProfile', cluster_id='paciorek')
+rc.ids
+```
 
 # How to get additional help
 

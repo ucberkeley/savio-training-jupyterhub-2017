@@ -1,6 +1,5 @@
 #import uuid
 #c.BaseParallelApplication.cluster_id = str(uuid.uuid4())  # this would create a unique ID
-c.BaseParallelApplication.cluster_id = 'paciorek'
 c.IPClusterStart.controller_launcher_class = 'SlurmControllerLauncher'
 c.IPClusterEngines.engine_launcher_class = 'SlurmEngineSetLauncher'
 c.IPClusterEngines.n = 48   # 2 nodes worth of engines...
