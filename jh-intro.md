@@ -100,15 +100,40 @@ import IPython.parallel as ipp
 rc = ipp.Client(profile='default', cluster_id='')
 ```
 
-And here's an example of some basic usage:
+The file *parallel-example.py*  has some examples of some basic usage.
 
+*I may want to convert that to an ipynb once have clarity from Yong on issues with running the code*
+
+# IPython clusters: customization -- setup
+
+Suppose you want to run your workers in a different Savio partition, change the time limit, or use more than one node for your computation.
+
+In that case you need to set up a custom cluster profile. This involves setting values for SLURM options in such a way that IPython can submit the appropriate job to SLURM. 
+
+Here are the steps (also documented on the Savio JupyterHub page):
+
+ - In a terminal (either from JupyterHub or not), enter:
 ```
-
-
+PROFILENAME=myNewProfile
+/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipython
+profile create --parallel --profile=${PROFILENAME}
 ```
-
-
-
+ - Now go to the newly created directory for the profile:
+```
+cd $HOME/.ipython/profile_${PROFILENAME}
+```
+ - Add the following to *ipcontroller_config.py*:
+```
+cat >> ipcontroller_config.py << EOF
+import netifaces
+c.IPControllerApp.location = netifaces.ifaddresses('eth0')[netifaces.AF_INET][0]['addr']
+c.HubFactory.ip = '*'
+EOF
+```
+ - Now modify the options in *custom_profile_code.py* and append it to *ipcluster_config.py*.
+```
+cat custom_profile_code.py >> ipcluster_config.py
+```
 
 
 # How to get additional help
