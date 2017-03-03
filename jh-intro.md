@@ -106,7 +106,8 @@ Such clusters (except for basic testing) should be run under the `Savio - 1 node
  - This code should connect you to your cluster:
 
 ```
-import IPython.parallel as ipp 
+import IPython.parallel as ipp  # 2.7.8
+import ipyparallel as ipp       # 3.2.3
 rc = ipp.Client(profile='default', cluster_id='')
 ```
 

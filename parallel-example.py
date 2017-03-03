@@ -1,4 +1,5 @@
-import IPython.parallel as ipp 
+# import IPython.parallel as ipp   # 2.7.8
+import ipyparallel as ipp     # 3.2.3
 rc = ipp.Client(profile='default', cluster_id='')
 rc.ids
 
@@ -10,13 +11,12 @@ lview = rc.load_balanced_view()
 lview.block = True
 
 import pandas 
-dat = pandas.read_csv('/global/scratch/paciorek/bayArea.csv', header = None)
+dat = pandas.read_csv('/global/scratch/paciorek/bayArea.csv', header = None, encoding = 'latin1')
 dat.columns = ('Year','Month','DayofMonth','DayOfWeek','DepTime','CRSDepTime',
 'ArrTime','CRSArrTime','UniqueCarrier','FlightNum','TailNum',
 'ActualElapsedTime','CRSElapsedTime','AirTime','ArrDelay','DepDelay',
 'Origin','Dest','Distance','TaxiIn','TaxiOut','Cancelled','CancellationCode',
-'Diverted','CarrierDelay','WeatherDelay','NASDelay','SecurityDelay',
-'LateAircraftDelay')
+'Diverted','CarrierDelay','WeatherDelay','NASDelay','SecurityDelay','LateAircraftDelay')
 
 dview.execute('import statsmodels.api as sm')
 
