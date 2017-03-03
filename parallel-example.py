@@ -1,5 +1,5 @@
-# import IPython.parallel as ipp   # 2.7.8
-import ipyparallel as ipp     # 3.2.3
+# import IPython.parallel as ipp   # Python 2
+import ipyparallel as ipp     # Python 3
 rc = ipp.Client(profile='default', cluster_id='')
 rc.ids
 

@@ -78,6 +78,12 @@ Then we can immediately start working on our example notebook.
 
 We could also start a terminal and get a view on the filesystem and on the processes running on the node. 
 
+You can use either Python 2 or Python 3, but note that Python 3 is Python 3.5.1 (not the Python 3.2.3 available through the Savio module). To install additional Python 3 packages you'll need to run the Python 3.5.1 version of pip, e.g.,
+
+```
+/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/pip install --user statsmodels
+```
+
 # Introduction to Jupyterhub on Savio: managing notebooks
 
 The key navigation points in your Jupyter browser session are:
@@ -89,7 +95,7 @@ The key navigation points in your Jupyter browser session are:
 
 # IPython clusters: one node cluster -- setup
 
-One can do parallel processing in a variety of ways in Python. Here we'll cover IPython parallel clusters. We'll start with a one node cluster. 
+One can do parallel processing in a variety of ways in Python. Here we'll cover IPython parallel clusters. We'll start with a one node cluster.  By default the parallel workers will run Python 3.5.1, so it's best to start a Python 3 notebook.
 
 Such clusters (except for basic testing) should be run under the `Savio - 1 node` or `Savio2 - 1 node` job profile.
 
@@ -106,20 +112,21 @@ Such clusters (except for basic testing) should be run under the `Savio - 1 node
  - This code should connect you to your cluster:
 
 ```
-import IPython.parallel as ipp  # 2.7.8
-import ipyparallel as ipp       # 3.2.3
+# import IPython.parallel as ipp  # Python 2
+import ipyparallel as ipp       # Python 3
 rc = ipp.Client(profile='default', cluster_id='')
 ```
 
 The file *parallel-example.py*  has some examples of some basic usage.
 
-*I may want to convert that to an ipynb once have clarity from Yong on issues with running the code*
 
 # IPython clusters: customization -- setup
 
 Suppose you want to run your workers in a different Savio partition, change the time limit, or use more than one node for your computation.
 
 In that case you need to set up a custom cluster profile. This involves setting values for SLURM options in such a way that IPython can submit the appropriate job to SLURM. 
+
+Again, this is based on Python 3.5.1 and would involve some customization for Python 2.7.8.
 
 Here are the steps (also documented on the Savio JupyterHub page):
 
