@@ -1,5 +1,5 @@
 % Savio Jupyterhub training: JupyterHub on the Berkeley Savio high-performance computing cluster
-% March 8, 2017
+% March 7, 2017
 % Chris Paciorek and Maurice Manning
 
 
