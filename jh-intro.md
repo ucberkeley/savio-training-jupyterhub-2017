@@ -66,7 +66,7 @@ We can choose from:
 
  - Local server 
     - testing
-    - controlling multi-node parallel clusters)
+    - controlling multi-node parallel clusters
  - Savio (1 node) 
     - for parallel computation
  - Savio2 (1 node) 
