@@ -27,3 +27,7 @@ c.SlurmEngineSetLauncher.batch_template = '''#!/bin/bash -l
 /global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipcontroller --profile-dir={profile_dir} --cluster-id="{cluster_id}" & sleep 10
 srun /global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipengine --profile-dir={profile_dir} --cluster-id="{cluster_id}"
 '''
+# for Python 2.7.8, replace the last two lines with:
+# module load python/2.7.8 ipython
+# ipcontroller --profile-dir={profile_dir} --cluster-id="{cluster_id}" & sleep 10
+# ipengine --profile-dir={profile_dir} --cluster-id="{cluster_id}"

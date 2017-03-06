@@ -7,13 +7,14 @@
 
 We'll do this mostly as a demonstration. I encourage you to login to your account and try out the various examples yourself as we go through them.
 
-The first half of this material is based on the Savio JupyterHub documention we have prepared and continue to prepare, available at [http://research-it.berkeley.edu/services/high-performance-computing/XXXX](http://research-it.berkeley.edu/services/high-performance-computing/XXXX).
+The first half of this material is based on the Savio JupyterHub documention we have prepared and continue to prepare, available at [http://research-it.berkeley.edu/services/high-performance-computing/using-juypterhub-savio](http://research-it.berkeley.edu/services/high-performance-computing/using-juypterhub-savio).
 
 The materials for this tutorial are available using git at [https://github.com/ucberkeley/savio-training-jupyterhub-2017](https://github.com/ucberkeley/savio-training-jupyterhub-2017) or simply as a [zip file](https://github.com/ucberkeley/savio-training-jupyterhub-2017/archive/master.zip).
 
 These *jh-intro.html* and *jh-intro_slides.html* files were created from *jh-intro.md* by running `make all` (see *Makefile* for details on how that creates the html files).
 
 You can find the material from previous trainings at:
+
  - Introduction to Savio (August 2016): [zip file](https://github.com/ucberkeley/savio-training-intro-2017/archive/master.zip) 
  - Parallelization on Savio (September 2017): [zip file](https://github.com/ucberkeley/savio-training-parallel-2017/archive/master.zip)
 
@@ -51,7 +52,7 @@ I've installed the Anaconda distribution of Python (actually a reduced form vers
 conda install jupyter
 ```
 
-which also installs IPython. Then I can start a Jupyter notebook server and run notebooks by simply invoking `jupyter notebook` or `jupyter notebook notebook-example.ipynb`. 
+which also installs IPython. Then I can start a Jupyter notebook server and run notebooks by simply invoking `jupyter notebook` or (to open an existing notebook) `jupyter notebook notebook-example.ipynb`. 
 
 # Introduction to Jupyterhub on Savio: logging on
 
@@ -78,11 +79,23 @@ Then we can immediately start working on our example notebook.
 
 We could also start a terminal and get a view on the filesystem and on the processes running on the node. 
 
-You can use either Python 2 or Python 3, but note that Python 3 is Python 3.5.1 (not the Python 3.2.3 available through the Savio module). To install additional Python 3 packages you'll need to run the Python 3.5.1 version of pip, e.g.,
+You can use either Python 2 or Python 3, but note that Python 3 is Python 3.5.1 (not the Python 3.2.3 available through the Savio module). 
+
+# Introduction to Jupyterhub on Savio: installing Python packages
+
+Since our JupyterHub installation uses Python 3.5.1 (not the Python 3.2.3 available via the Savio module system), to install additional Python 3 packages you'll need to run the Python 3.5.1 version of pip, e.g.,
 
 ```
 /global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/pip install --user statsmodels
 ```
+
+To install Python 2 packages, follow the usual procedure:
+```
+module load python/2
+pip install --user statsmodels
+```
+
+All of the Python 2 packages available via the Python 2 module and all of the Python 3.5.1 packages we've installed in */global/software/sl-6.x86_64/modules/langs/python/3.5.1/lib/python3.5/site-packages* and */global/software/sl-6.x86_64/modules/langs/python/3.5.1/lib/python3.5* are available in your IPython notebooks. 
 
 # Introduction to Jupyterhub on Savio: managing notebooks
 
@@ -95,7 +108,7 @@ The key navigation points in your Jupyter browser session are:
 
 # IPython clusters: one node cluster -- setup
 
-One can do parallel processing in a variety of ways in Python. Here we'll cover IPython parallel clusters. We'll start with a one node cluster.  By default the parallel workers will run Python 3.5.1, so it's best to start a Python 3 notebook.
+One can do parallel processing in a variety of ways in Python. Here we'll cover IPython parallel clusters. We'll start with a one node cluster.  By default the parallel workers will run Python 3.5.1, so it's best to start a Python 3 notebook. 
 
 Such clusters (except for basic testing) should be run under the `Savio - 1 node` or `Savio2 - 1 node` job profile.
 
@@ -112,21 +125,20 @@ Such clusters (except for basic testing) should be run under the `Savio - 1 node
  - This code should connect you to your cluster:
 
 ```
-# import IPython.parallel as ipp  # Python 2
 import ipyparallel as ipp       # Python 3
 rc = ipp.Client(profile='default', cluster_id='')
 ```
 
-The file *parallel-example.py*  has some examples of some basic usage.
+The file *parallel-example.ipynb*  has some examples of some basic usage.
 
 
 # IPython clusters: customization -- setup
 
-Suppose you want to run your workers in a different Savio partition, change the time limit, or use more than one node for your computation.
+Suppose you want to run your workers in a different Savio partition, change the time limit, use more than one node for your computation, or use Python 2.7.8 with an IPython cluster. 
 
 In that case you need to set up a custom cluster profile. This involves setting values for SLURM options in such a way that IPython can submit the appropriate job to SLURM. 
 
-Again, this is based on Python 3.5.1 and would involve some customization for Python 2.7.8.
+Again, this is based on Python 3.5.1 and would involve some customization for Python 2.7.8 (see comments below and in *custom_profile_code.py*).
 
 Here are the steps (also documented on the Savio JupyterHub page):
 
@@ -134,6 +146,7 @@ Here are the steps (also documented on the Savio JupyterHub page):
 ```
 PROFILENAME=myNewProfile
 /global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipython profile create --parallel --profile=${PROFILENAME}
+# module load python/2.7.8 ipython; ipython profile create --parallel --profile=${PROFILENAME} # for Python 2.7.8
 ```
  - Now go to the newly created directory for the profile:
 ```
@@ -163,10 +176,15 @@ Then start a Notebook and connect to the cluster.
 For example, we use the same code as we did before, but needing to specify the name of the cluster, which is set to be *paciorek* in *custom_profile_code.py*.
 
 ```
-import IPython.parallel as ipp 
+import ipyparallel as ipp   # Python 3.5.1 
+# import IPython.parallel as ipp   # Python 2.7.8
 rc = ipp.Client(profile='myNewProfile', cluster_id='')
 rc.ids
 ```
+
+# Integration with Box
+
+Maurice will lead this section, using the *BoxAuthenticationBootstrap.ipynb* and *TransferFilesFromBoxToSavioScratch.ipynb* notebooks.
 
 # How to get additional help
 

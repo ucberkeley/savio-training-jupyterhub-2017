@@ -25,10 +25,14 @@ March 8, 2017
 <div id="introduction" class="slide section level1">
 <h1>Introduction</h1>
 <p>We'll do this mostly as a demonstration. I encourage you to login to your account and try out the various examples yourself as we go through them.</p>
-<p>The first half of this material is based on the Savio JupyterHub documention we have prepared and continue to prepare, available at <a href="http://research-it.berkeley.edu/services/high-performance-computing/XXXX">http://research-it.berkeley.edu/services/high-performance-computing/XXXX</a>.</p>
+<p>The first half of this material is based on the Savio JupyterHub documention we have prepared and continue to prepare, available at <a href="http://research-it.berkeley.edu/services/high-performance-computing/using-juypterhub-savio">http://research-it.berkeley.edu/services/high-performance-computing/using-juypterhub-savio</a>.</p>
 <p>The materials for this tutorial are available using git at <a href="https://github.com/ucberkeley/savio-training-jupyterhub-2017">https://github.com/ucberkeley/savio-training-jupyterhub-2017</a> or simply as a <a href="https://github.com/ucberkeley/savio-training-jupyterhub-2017/archive/master.zip">zip file</a>.</p>
 <p>These <em>jh-intro.html</em> and <em>jh-intro_slides.html</em> files were created from <em>jh-intro.md</em> by running <code>make all</code> (see <em>Makefile</em> for details on how that creates the html files).</p>
-<p>You can find the material from previous trainings at: - Introduction to Savio (August 2016): <a href="https://github.com/ucberkeley/savio-training-intro-2017/archive/master.zip">zip file</a> - Parallelization on Savio (September 2017): <a href="https://github.com/ucberkeley/savio-training-parallel-2017/archive/master.zip">zip file</a></p>
+<p>You can find the material from previous trainings at:</p>
+<ul>
+<li>Introduction to Savio (August 2016): <a href="https://github.com/ucberkeley/savio-training-intro-2017/archive/master.zip">zip file</a></li>
+<li>Parallelization on Savio (September 2017): <a href="https://github.com/ucberkeley/savio-training-parallel-2017/archive/master.zip">zip file</a></li>
+</ul>
 </div>
 <div id="outline" class="slide section level1">
 <h1>Outline</h1>
@@ -65,7 +69,7 @@ March 8, 2017
 <p>We'll review basic usage of a notebook using <em>notebook-example.ipynb</em>.</p>
 <p>I've installed the Anaconda distribution of Python (actually a reduced form version called Miniconda) on my laptop, from <a href="https://conda.io/miniconda.html">https://conda.io/miniconda.html</a> and then from the command line installed Jupyter:</p>
 <pre><code>conda install jupyter</code></pre>
-<p>which also installs IPython. Then I can start a Jupyter notebook server and run notebooks by simply invoking <code>jupyter notebook</code> or <code>jupyter notebook notebook-example.ipynb</code>.</p>
+<p>which also installs IPython. Then I can start a Jupyter notebook server and run notebooks by simply invoking <code>jupyter notebook</code> or (to open an existing notebook) <code>jupyter notebook notebook-example.ipynb</code>.</p>
 </div>
 <div id="introduction-to-jupyterhub-on-savio-logging-on" class="slide section level1">
 <h1>Introduction to Jupyterhub on Savio: logging on</h1>
@@ -94,8 +98,16 @@ March 8, 2017
 </ul>
 <p>Then we can immediately start working on our example notebook.</p>
 <p>We could also start a terminal and get a view on the filesystem and on the processes running on the node.</p>
-<p>You can use either Python 2 or Python 3, but note that Python 3 is Python 3.5.1 (not the Python 3.2.3 available through the Savio module). To install additional Python 3 packages you'll need to run the Python 3.5.1 version of pip, e.g.,</p>
+<p>You can use either Python 2 or Python 3, but note that Python 3 is Python 3.5.1 (not the Python 3.2.3 available through the Savio module).</p>
+</div>
+<div id="introduction-to-jupyterhub-on-savio-installing-python-packages" class="slide section level1">
+<h1>Introduction to Jupyterhub on Savio: installing Python packages</h1>
+<p>Since our JupyterHub installation uses Python 3.5.1 (not the Python 3.2.3 available via the Savio module system), to install additional Python 3 packages you'll need to run the Python 3.5.1 version of pip, e.g.,</p>
 <pre><code>/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/pip install --user statsmodels</code></pre>
+<p>To install Python 2 packages, follow the usual procedure:</p>
+<pre><code>module load python/2
+pip install --user statsmodels</code></pre>
+<p>All of the Python 2 packages available via the Python 2 module and all of the Python 3.5.1 packages we've installed in <em>/global/software/sl-6.x86_64/modules/langs/python/3.5.1/lib/python3.5/site-packages</em> and <em>/global/software/sl-6.x86_64/modules/langs/python/3.5.1/lib/python3.5</em> are available in your IPython notebooks.</p>
 </div>
 <div id="introduction-to-jupyterhub-on-savio-managing-notebooks" class="slide section level1">
 <h1>Introduction to Jupyterhub on Savio: managing notebooks</h1>
@@ -124,21 +136,21 @@ March 8, 2017
 <li>Start or go to a running notebook.</li>
 <li>This code should connect you to your cluster:</li>
 </ul>
-<pre><code># import IPython.parallel as ipp  # Python 2
-import ipyparallel as ipp       # Python 3
+<pre><code>import ipyparallel as ipp       # Python 3
 rc = ipp.Client(profile=&#39;default&#39;, cluster_id=&#39;&#39;)</code></pre>
-<p>The file <em>parallel-example.py</em> has some examples of some basic usage.</p>
+<p>The file <em>parallel-example.ipynb</em> has some examples of some basic usage.</p>
 </div>
 <div id="ipython-clusters-customization----setup" class="slide section level1">
 <h1>IPython clusters: customization -- setup</h1>
-<p>Suppose you want to run your workers in a different Savio partition, change the time limit, or use more than one node for your computation.</p>
+<p>Suppose you want to run your workers in a different Savio partition, change the time limit, use more than one node for your computation, or use Python 2.7.8 with an IPython cluster.</p>
 <p>In that case you need to set up a custom cluster profile. This involves setting values for SLURM options in such a way that IPython can submit the appropriate job to SLURM.</p>
-<p>Again, this is based on Python 3.5.1 and would involve some customization for Python 2.7.8.</p>
+<p>Again, this is based on Python 3.5.1 and would involve some customization for Python 2.7.8 (see comments below and in <em>custom_profile_code.py</em>).</p>
 <p>Here are the steps (also documented on the Savio JupyterHub page):</p>
 <ul>
 <li><p>In a terminal (either from JupyterHub or not), enter:</p>
 <pre><code>PROFILENAME=myNewProfile
-/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipython profile create --parallel --profile=${PROFILENAME}</code></pre></li>
+/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipython profile create --parallel --profile=${PROFILENAME}
+# module load python/2.7.8 ipython; ipython profile create --parallel --profile=${PROFILENAME} # for Python 2.7.8</code></pre></li>
 <li><p>Now go to the newly created directory for the profile:</p>
 <pre><code>cd $HOME/.ipython/profile_${PROFILENAME}</code></pre></li>
 <li><p>Add the following to <em>ipcontroller_config.py</em>:</p>
@@ -157,9 +169,14 @@ EOF</code></pre></li>
 <p>Select the number of engines corresponding to the number of tasks you specified in ipcluster_config.py (48 in this case).</p>
 <p>Then start a Notebook and connect to the cluster.</p>
 <p>For example, we use the same code as we did before, but needing to specify the name of the cluster, which is set to be <em>paciorek</em> in <em>custom_profile_code.py</em>.</p>
-<pre><code>import IPython.parallel as ipp 
+<pre><code>import ipyparallel as ipp   # Python 3.5.1 
+# import IPython.parallel as ipp   # Python 2.7.8
 rc = ipp.Client(profile=&#39;myNewProfile&#39;, cluster_id=&#39;&#39;)
 rc.ids</code></pre>
+</div>
+<div id="integration-with-box" class="slide section level1">
+<h1>Integration with Box</h1>
+<p>Maurice will lead this section, using the <em>BoxAuthenticationBootstrap.ipynb</em> and <em>TransferFilesFromBoxToSavioScratch.ipynb</em> notebooks.</p>
 </div>
 <div id="how-to-get-additional-help" class="slide section level1">
 <h1>How to get additional help</h1>
