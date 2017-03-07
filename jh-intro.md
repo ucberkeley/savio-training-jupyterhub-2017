@@ -16,7 +16,7 @@ These *jh-intro.html* and *jh-intro_slides.html* files were created from *jh-int
 You can find the material from previous trainings at:
 
  - Introduction to Savio (August 2016): [zip file](https://github.com/ucberkeley/savio-training-intro-2017/archive/master.zip) 
- - Parallelization on Savio (September 2017): [zip file](https://github.com/ucberkeley/savio-training-parallel-2017/archive/master.zip)
+ - Parallelization on Savio (September 2016): [zip file](https://github.com/ucberkeley/savio-training-parallel-2017/archive/master.zip)
 
 
 # Outline
@@ -91,7 +91,7 @@ Since our JupyterHub installation uses Python 3.5.1 (not the Python 3.2.3 availa
 
 To install Python 2 packages, follow the usual procedure:
 ```
-module load python/2
+module load python/2.7.8
 pip install --user statsmodels
 ```
 
