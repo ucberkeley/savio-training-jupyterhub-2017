@@ -116,7 +116,8 @@ One can do parallel processing in a variety of ways in Python. Here we'll cover 
 Such clusters (except for basic testing) should be run under the `Savio - 1 node` or `Savio2 - 1 node` job profile.
 
  - Invoke 
-```/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipcluster nbextension enable --user``` 
+```/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipcluster \
+   nbextension enable --user``` 
     from a terminal (either logging in via SSH or in a Jupyter terminal session).
  - You should see that the `Clusters` tab is now `IPython Clusters` on the main Jupyter page. If not, then stop and restart your server through `Control Panel`.
 
