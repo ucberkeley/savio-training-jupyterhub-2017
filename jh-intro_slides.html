@@ -153,8 +153,10 @@ rc = ipp.Client(profile=&#39;default&#39;, cluster_id=&#39;&#39;)</code></pre>
 <ul>
 <li><p>In a terminal (either from JupyterHub or not), enter:</p>
 <pre><code>PROFILENAME=myNewProfile
-/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipython profile create --parallel --profile=${PROFILENAME}
-# module load python/2.7.8 ipython; ipython profile create --parallel --profile=${PROFILENAME} # for Python 2.7.8</code></pre></li>
+/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipython \
+ profile create --parallel --profile=${PROFILENAME}
+# module load python/2.7.8 ipython; ipython profile create --parallel \
+ --profile=${PROFILENAME} # for Python 2.7.8</code></pre></li>
 <li><p>Now go to the newly created directory for the profile:</p>
 <pre><code>cd $HOME/.ipython/profile_${PROFILENAME}</code></pre></li>
 <li><p>Add the following to <em>ipcontroller_config.py</em>:</p>

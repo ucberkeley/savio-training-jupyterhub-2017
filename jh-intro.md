@@ -151,8 +151,10 @@ Here are the steps (also documented on the Savio JupyterHub page):
  - In a terminal (either from JupyterHub or not), enter:
 ```
 PROFILENAME=myNewProfile
-/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipython profile create --parallel --profile=${PROFILENAME}
-# module load python/2.7.8 ipython; ipython profile create --parallel --profile=${PROFILENAME} # for Python 2.7.8
+/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipython \
+     profile create --parallel --profile=${PROFILENAME}
+# module load python/2.7.8 ipython; ipython profile create --parallel \
+     --profile=${PROFILENAME} # for Python 2.7.8
 ```
  - Now go to the newly created directory for the profile:
 ```
