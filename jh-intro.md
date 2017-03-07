@@ -75,7 +75,7 @@ We can choose from:
     - for serial computation
  - Let us know if you need other configurations (e.g., GPU nodes, big memory nodes, etc.)
 
-Then we can immediately start working on our example notebook.
+Then we can immediately start working on our example notebook, *notebook-example.ipynb*.
 
 We could also start a terminal and get a view on the filesystem and on the processes running on the node. 
 
@@ -96,6 +96,9 @@ pip install --user statsmodels
 ```
 
 All of the Python 2 packages available via the Python 2 module and all of the Python 3.5.1 packages we've installed in */global/software/sl-6.x86_64/modules/langs/python/3.5.1/lib/python3.5/site-packages* and */global/software/sl-6.x86_64/modules/langs/python/3.5.1/lib/python3.5* are available in your IPython notebooks. 
+
+To see what packages you've installed we can look in *~/.local/lib/python2.7* and *~/.local/lib/python3.5*. 
+
 
 # Introduction to Jupyterhub on Savio: managing notebooks
 

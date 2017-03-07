@@ -81,7 +81,7 @@
 </ul></li>
 <li>Let us know if you need other configurations (e.g., GPU nodes, big memory nodes, etc.)</li>
 </ul>
-<p>Then we can immediately start working on our example notebook.</p>
+<p>Then we can immediately start working on our example notebook, <em>notebook-example.ipynb</em>.</p>
 <p>We could also start a terminal and get a view on the filesystem and on the processes running on the node.</p>
 <p>You can use either Python 2 or Python 3, but note that Python 3 is Python 3.5.1 (not the Python 3.2.3 available through the Savio module).</p>
 <h1 id="introduction-to-jupyterhub-on-savio-installing-python-packages">Introduction to Jupyterhub on Savio: installing Python packages</h1>
@@ -91,6 +91,7 @@
 <pre><code>module load python/2.7.8
 pip install --user statsmodels</code></pre>
 <p>All of the Python 2 packages available via the Python 2 module and all of the Python 3.5.1 packages we've installed in <em>/global/software/sl-6.x86_64/modules/langs/python/3.5.1/lib/python3.5/site-packages</em> and <em>/global/software/sl-6.x86_64/modules/langs/python/3.5.1/lib/python3.5</em> are available in your IPython notebooks.</p>
+<p>To see what packages you've installed we can look in <em>~/.local/lib/python2.7</em> and <em>~/.local/lib/python3.5</em>.</p>
 <h1 id="introduction-to-jupyterhub-on-savio-managing-notebooks">Introduction to Jupyterhub on Savio: managing notebooks</h1>
 <p>The key navigation points in your Jupyter browser session are:</p>
 <ul>
