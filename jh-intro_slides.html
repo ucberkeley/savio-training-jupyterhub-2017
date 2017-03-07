@@ -125,8 +125,11 @@ pip install --user statsmodels</code></pre>
 <p>One can do parallel processing in a variety of ways in Python. Here we'll cover IPython parallel clusters. We'll start with a one node cluster. By default the parallel workers will run Python 3.5.1, so it's best to start a Python 3 notebook.</p>
 <p>Such clusters (except for basic testing) should be run under the <code>Savio - 1 node</code> or <code>Savio2 - 1 node</code> job profile.</p>
 <ul>
-<li>Invoke <code>/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipcluster \    nbextension enable --user</code> from a terminal (either logging in via SSH or in a Jupyter terminal session).</li>
-<li>You should see that the <code>Clusters</code> tab is now <code>IPython Clusters</code> on the main Jupyter page. If not, then stop and restart your server through <code>Control Panel</code>.</li>
+<li><p>Invoke</p>
+<pre><code>/global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipcluster \
+nbextension enable --user</code></pre>
+from a terminal (either logging in via SSH or in a Jupyter terminal session).</li>
+<li><p>You should see that the <code>Clusters</code> tab is now <code>IPython Clusters</code> on the main Jupyter page. If not, then stop and restart your server through <code>Control Panel</code>.</p></li>
 </ul>
 </div>
 <div id="ipython-clusters-one-node-cluster----running" class="slide section level1">
