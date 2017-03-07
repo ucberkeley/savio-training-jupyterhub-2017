@@ -181,7 +181,7 @@ Select the number of engines corresponding to the number of tasks you specified 
 
 Then start a Notebook and connect to the cluster.
 
-For example, we use the same code as we did before, but needing to specify the name of the cluster, which is set to be *paciorek* in *custom_profile_code.py*.
+For example, we use the same code as we did before, but needing to specify the profile name, 'myNewProfile' in this case.
 
 ```
 import ipyparallel as ipp   # Python 3.5.1 

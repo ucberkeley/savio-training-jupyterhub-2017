@@ -174,7 +174,7 @@ EOF</code></pre></li>
 <p>Now we should be able to start a cluster using this profile under the <em>IPython Clusters</em> tab, as follows.</p>
 <p>Select the number of engines corresponding to the number of tasks you specified in ipcluster_config.py (48 in this case).</p>
 <p>Then start a Notebook and connect to the cluster.</p>
-<p>For example, we use the same code as we did before, but needing to specify the name of the cluster, which is set to be <em>paciorek</em> in <em>custom_profile_code.py</em>.</p>
+<p>For example, we use the same code as we did before, but needing to specify the profile name, 'myNewProfile' in this case.</p>
 <pre><code>import ipyparallel as ipp   # Python 3.5.1 
 # import IPython.parallel as ipp   # Python 2.7.8
 rc = ipp.Client(profile=&#39;myNewProfile&#39;, cluster_id=&#39;&#39;)
