@@ -30,4 +30,4 @@ srun /global/software/sl-6.x86_64/modules/langs/python/3.5.1/bin/ipengine --prof
 # for Python 2.7.8, replace the last two lines with:
 # module load python/2.7.8 ipython
 # ipcontroller --profile-dir={profile_dir} --cluster-id="{cluster_id}" & sleep 10
-# ipengine --profile-dir={profile_dir} --cluster-id="{cluster_id}"
+# srun ipengine --profile-dir={profile_dir} --cluster-id="{cluster_id}"
